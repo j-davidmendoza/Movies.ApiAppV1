@@ -20,6 +20,12 @@ public class RatingService : IRatingService
         _movieRepository = movieRepository;
 
     }
+
+    public Task<bool> DeleteRatingAsync(Guid movieId, Guid userId, CancellationToken token = default)
+    {
+        return _ratingRepository.DeleteRatingAsync(movieId, userId, token);
+    }
+
     public async Task<bool> RateMovieAsync(Guid movieId, int rating, Guid userId, CancellationToken token = default)
     {
         if (rating is <= 0 or >5)
